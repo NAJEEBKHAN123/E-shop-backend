@@ -20,11 +20,14 @@ app.use(express.json());
 // Static folder for images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+
 app.get('/uploads/*', (req, res, next) => {
   console.log(`Serving file: ${req.path}`);
   next();
 });
-
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
